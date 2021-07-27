@@ -1,7 +1,7 @@
 package com.example.isteappbackend;
 
 public class Task {
-    String title,description,assignedTo,dueDate;
+    public String title,description,assignedTo,dueDate;
     Task(String title, String description, String assignedTo, String dueDate){
         this.title = title;
         this.description = description;

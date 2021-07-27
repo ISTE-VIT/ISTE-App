@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.MyViewHolder> {
     List<Task> tasks = new ArrayList<>();
     Context ct;
-    public MyAdapter(Context ct,List<Task> tasks){
+    public TasksAdapter(Context ct, List<Task> tasks){
         this.ct = ct;
         this.tasks=tasks;
     }
