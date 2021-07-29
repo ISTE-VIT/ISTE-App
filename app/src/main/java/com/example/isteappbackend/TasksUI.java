@@ -1,5 +1,7 @@
 package com.example.isteappbackend;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,19 +18,28 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TasksUI extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     TasksAdapter tasksAdapter;
-    List<Task> tasks=new ArrayList<>();
+    Map<String,Task> tasks=new HashMap<>();
     FirebaseDatabase mDatabase;
     DatabaseReference taskDBref;
+    ChildEventListener mListener;
     FloatingActionButton taskAddButton;
+    static ViewGroup vg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +52,41 @@ public class TasksUI extends AppCompatActivity implements View.OnClickListener {
         taskAddButton=findViewById(R.id.add_task_button);
         recyclerView=findViewById(R.id.tasks_recycler);
         taskAddButton.setOnClickListener(this);
-        Task t=new Task("Task 1", "Desc 1", "P1", "Date 1");
-        tasks.add(t);
         tasksAdapter=new TasksAdapter(this,tasks);
         recyclerView.setAdapter(tasksAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        vg=(ViewGroup) findViewById(android.R.id.content);
+
+        mListener=new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                tasks.put(snapshot.getKey(),snapshot.getValue(Task.class));
+                tasksAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                tasks.put(snapshot.getKey(),snapshot.getValue(Task.class));
+                tasksAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+                tasks.remove(snapshot.getKey());
+                tasksAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        };
+        taskDBref.addChildEventListener(mListener);
     }
 
     @Override
@@ -61,19 +102,8 @@ public class TasksUI extends AppCompatActivity implements View.OnClickListener {
                 descIP=diagInflated.findViewById(R.id.TaskDescriptionIP);
                 dateIP=diagInflated.findViewById(R.id.TaskDueDateIP);
                 assignedIP=diagInflated.findViewById(R.id.TaskAssignedIP);
-                //TODO: Input validation
-                builder.setPositiveButton("Add Task", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //the onclick here is overridden and taken over by the dialog coming up next
-                    }
-                });
-                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                builder.setPositiveButton("Add Task", null);
+                builder.setNegativeButton(android.R.string.cancel, null);
                 builder.setView(diagInflated);
                 AlertDialog dialog=builder.create();
                 dialog.show();
@@ -84,7 +114,7 @@ public class TasksUI extends AppCompatActivity implements View.OnClickListener {
                                 description=descIP.getText().toString(),
                                 date=dateIP.getText().toString(),
                                 assigned=assignedIP.getText().toString();
-
+                        //TODO: Input validation
                         Task newTask=new Task(title,description,assigned,date);
                         taskDBref.push().setValue(newTask);
                         dialog.dismiss();
