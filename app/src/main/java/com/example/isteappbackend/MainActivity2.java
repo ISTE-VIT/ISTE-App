@@ -39,12 +39,17 @@ public class MainActivity2 extends AppCompatActivity {
         FragmentContainerView nav=findViewById(R.id.nav_host_fragment_activity_main2);
          bottomNavigationView = findViewById(R.id.nav_view);
         firebaseAuth=FirebaseAuth.getInstance();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, LoadingFrag.class,null)
+                .addToBackStack(null)
+                .commit();
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
-                if(user==null){
+                if(user!=null){
                     bottomNavigationView.setVisibility(VISIBLE);
+                    LoadingFrag.toHome();
                     // Passing each menu ID as a set of Ids because each
                     // menu should be considered as top level destinations.
                     FragmentManager fragmentManager=getSupportFragmentManager();
@@ -56,17 +61,16 @@ public class MainActivity2 extends AppCompatActivity {
                             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                             .build();
                     NavController navController = Navigation.findNavController(MainActivity2.this, R.id.nav_host_fragment_activity_main2);
+
                     NavigationUI.setupActionBarWithNavController(MainActivity2.this, navController, appBarConfiguration);
                     NavigationUI.setupWithNavController(binding.navView, navController);
                 }
                 else{
                     Log.i("mine","not logged in");
-
+                    LoadingFrag.toLogin();
                 }
             }
         };
-
-
     }
 
     @Override

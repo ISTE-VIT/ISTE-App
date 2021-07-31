@@ -37,9 +37,15 @@
         tools:layout="@layout/fragment_loading" >
         <action
             android:id="@+id/action_loadingFrag_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            />
         <action
             android:id="@+id/action_loadingFrag_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
+    <fragment android:id="@+id/placeholder" />
 </navigation>
