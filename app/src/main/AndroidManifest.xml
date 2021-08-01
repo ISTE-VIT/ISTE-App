@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ISTEAppBackend">
         <activity
-            android:name=".TasksUI"
-            android:theme="@style/Theme.ISTEAppBackend.NoActionBar" />
-        <activity
             android:name=".MainActivity2"
             android:label="@string/title_activity_main2" />
         <activity android:name=".MainActivity">
