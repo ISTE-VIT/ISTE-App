@@ -2,6 +2,7 @@ package com.example.iste;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,6 +22,15 @@ public class LoginScreen extends AppCompatActivity {
         final String password = enteredPassword.getText().toString();
 
         Toast.makeText(getApplicationContext(), email + password, Toast.LENGTH_SHORT).show();
+    }
+
+    public void SignUp(View view) {
+        signUp();
+    }
+
+    public void signUp() {
+        Intent intent = new Intent(getApplicationContext(), SignUpScreen.class);
+        startActivity(intent);
     }
 
     @Override

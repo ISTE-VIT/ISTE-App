@@ -104,6 +104,7 @@
         android:layout_marginEnd="94dp"
         android:layout_marginBottom="99dp"
         android:backgroundTint="#00FFFFFF"
+        android:onClick="SignUp"
         android:padding="0px"
         android:paddingStart="0px"
         android:paddingLeft="0px"
