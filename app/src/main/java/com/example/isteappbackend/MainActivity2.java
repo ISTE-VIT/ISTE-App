@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
@@ -41,29 +42,29 @@ public class MainActivity2 extends AppCompatActivity {
          bottomNavigationView = findViewById(R.id.nav_view);
         firebaseAuth=FirebaseAuth.getInstance();
         FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, LoadingFrag.class,null)
-                .addToBackStack(null)
-                .commit();
-        bottomNavigationView.setVisibility(VISIBLE);
-
+//        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, LoadingFrag.class,null)
+//                .addToBackStack("loading")
+//                .commit();
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 if(user!=null){
                     bottomNavigationView.setVisibility(VISIBLE);
+
                     if (onLoading)
 //                        Log.i("mine","Going ")
                         LoadingFrag.toHome();
                     else
                         LoginFragment.toHome();
+
                     // Passing each menu ID as a set of Ids because each
                     // menu should be considered as top level destinations.
                     FragmentManager fragmentManager=getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, HomeFragment.class,null)
-                            .addToBackStack(null)
-                            .commit();
-
+                    Fragment fragment = getSupportFragmentManager().findFragmentByTag("loading");
+//                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, HomeFragment.class,null)
+//                            .addToBackStack(null)
+//                            .commit();
                     AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                             .build();

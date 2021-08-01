@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case(R.id.tasksButton):
-                startActivity(tasks);
+//                startActivity(tasks);
         }
     }
 }
