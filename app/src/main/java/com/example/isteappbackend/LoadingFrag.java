@@ -30,6 +30,6 @@ public class LoadingFrag extends Fragment {
     public static void toLogin(){
         Navigation.findNavController(view).navigate(R.id.action_loadingFrag_to_loginFragment);
     }public static void toHome(){
-//        Navigation.findNavController(view).navigate(R.id.action_loadingFrag_to_navigation_home);
+        Navigation.findNavController(view).navigate(R.id.action_loadingFrag_to_navigation_home);
     }
 }

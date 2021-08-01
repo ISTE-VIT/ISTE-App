@@ -30,10 +30,11 @@ public class MainActivity2 extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
     BottomNavigationView bottomNavigationView;
+    Boolean onLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        onLoading=true;
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         FragmentContainerView nav=findViewById(R.id.nav_host_fragment_activity_main2);
@@ -43,13 +44,19 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, LoadingFrag.class,null)
                 .addToBackStack(null)
                 .commit();
+        bottomNavigationView.setVisibility(VISIBLE);
+
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 if(user!=null){
                     bottomNavigationView.setVisibility(VISIBLE);
-                    LoadingFrag.toHome();
+                    if (onLoading)
+//                        Log.i("mine","Going ")
+                        LoadingFrag.toHome();
+                    else
+                        LoginFragment.toHome();
                     // Passing each menu ID as a set of Ids because each
                     // menu should be considered as top level destinations.
                     FragmentManager fragmentManager=getSupportFragmentManager();
@@ -67,6 +74,7 @@ public class MainActivity2 extends AppCompatActivity {
                 }
                 else{
                     Log.i("mine","not logged in");
+                    onLoading=false;
                     LoadingFrag.toLogin();
                 }
             }
