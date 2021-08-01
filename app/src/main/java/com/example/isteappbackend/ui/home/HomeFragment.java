@@ -11,6 +11,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.isteappbackend.R;
 import com.example.isteappbackend.TasksUI;
@@ -20,6 +21,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //    private HomeViewModel homeViewModel;
 //    private FragmentHomeBinding binding;
     Intent tasks;
+    View view;
     @Override
     public void onCreate(@Nullable  Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_home,container,false);
+        view=inflater.inflate(R.layout.fragment_home,container,false);
         Button tasksButton=view.findViewById(R.id.tasksButton);
         tasksButton.setOnClickListener(this);
         return view;
@@ -42,12 +44,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 //        binding = null;
     }
-
+//    public static void toHome(){
+//        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_navigation_home);
+//    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case(R.id.tasksButton):
-//                startActivity(tasks);
+                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_tasksFragment);
         }
     }
 }

@@ -74,7 +74,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.MyViewHolder
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Edit Task");
-                View viewInflated = LayoutInflater.from(context).inflate(R.layout.task_input_dialog, TasksUI.vg, false);
+                View viewInflated = LayoutInflater.from(context).inflate(R.layout.task_input_dialog, TasksFragment.vg, false);
                 final EditText title_textView = (EditText) viewInflated.findViewById(R.id.TaskTitleIP),
                         description_textView = (EditText) viewInflated.findViewById(R.id.TaskDescriptionIP),
                         date_textView = (EditText) viewInflated.findViewById(R.id.TaskDueDateIP),
