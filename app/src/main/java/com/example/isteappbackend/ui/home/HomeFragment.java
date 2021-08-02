@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.isteappbackend.MainActivity2;
 import com.example.isteappbackend.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -21,7 +22,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable  Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,9 +34,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onDestroyView() {
+
         Log.i("mine","View destroyed");
         super.onDestroyView();
-
     }
     @Override
     public void onClick(View v) {

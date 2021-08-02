@@ -23,6 +23,8 @@ public class LoadingFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_loading, container, false);
+        MainActivity2.onLoading=true;
+        Log.i("mine","loading=true");
 
         return view;
     }
@@ -31,5 +33,12 @@ public class LoadingFrag extends Fragment {
         Navigation.findNavController(view).navigate(R.id.action_loadingFrag_to_loginFragment);
     }public static void toHome(){
         Navigation.findNavController(view).navigate(R.id.action_loadingFrag_to_navigation_home);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        MainActivity2.onLoading=false;
+        Log.i("mine","loading=false");
     }
 }
