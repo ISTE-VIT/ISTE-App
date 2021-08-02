@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_tasksFragment"
-            app:destination="@id/tasksFragment" />
+            app:destination="@id/tasksFragment"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
