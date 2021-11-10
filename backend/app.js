@@ -21,6 +21,7 @@ const userDataSchema = new mongoose.Schema({
 const taskSchema = new mongoose.Schema({
   task: String,
   deadline: String,
+  givenBy: String,
 });
 
 const broadcastSchema = new mongoose.Schema({
@@ -109,6 +110,7 @@ app.post(
     const newData = new Data({
       task: req.body.task,
       deadline: req.body.deadline,
+      givenBy: req.body.givenBy,
     });
     newData.save(function (err) {
       if (err) {
@@ -163,6 +165,7 @@ app.post(
     const newData = new Data({
       task: req.body.task,
       deadline: req.body.deadline,
+      givenBy: req.body.givenBy,
     });
     newData.save(function (err) {
       if (err) {

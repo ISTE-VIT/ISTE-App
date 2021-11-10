@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:iste/board/tasks/edit_task_success_screen.dart';
 import 'package:iste/board/tasks/success_task_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:iste/database/user_database.dart';
+import 'package:iste/models/user.dart';
 
 class NewTaskScreen extends StatefulWidget {
   static const routeName = "/new-task-screen";
@@ -15,7 +17,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   final taskController = TextEditingController();
   String err = "";
   int errorStatus = 0;
-  bool isLoading = false;
+  bool isLoading = true;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   bool timeSelected = false;
@@ -25,9 +27,20 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   bool dateEdit = false;
   bool timeEdit = false;
   late Map data;
+  late List<User> user;
   String selectedDateString = "";
   String selectedTimeString = "";
   int counter = 0;
+
+  Future refresh() async {
+    setState(() {
+      isLoading = true;
+    });
+    user = await UserDatabase.instance.readAllUsers();
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     dateEdit = false;
@@ -66,10 +79,14 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     } else {
       deadline = date;
     }
-    final response = await http.post(Uri.parse(url), body: {
-      "task": task,
-      "deadline": deadline,
-    });
+    final response = await http.post(
+      Uri.parse(url),
+      body: {
+        "task": task,
+        "deadline": deadline,
+        "givenBy": user[0].name,
+      },
+    );
     print(response.body);
     print("data added!!!");
     Navigator.of(context).pushNamed(SuccessTaskScreen.routeName);
@@ -103,6 +120,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       "id": id,
       "task": task,
       "deadline": deadline,
+      "givenBy": user[0].name,
     });
     print(response.body);
     print("data added!!!");
@@ -111,6 +129,12 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     } else {
       Navigator.of(context).pushNamed(EditTaskSuccessScreen.routeName);
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    refresh();
   }
 
   @override

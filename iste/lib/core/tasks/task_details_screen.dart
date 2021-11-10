@@ -16,6 +16,13 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   int counter = 0;
   bool edit = false;
 
+  void process(Map data) {
+    String name = data["givenBy"];
+    int index = name.indexOf(" ") + 1;
+    name = name.substring(0, index);
+    data["givenBy"] = name;
+  }
+
   Future refresh() async {
     setState(() {
       isLoading = true;
@@ -60,6 +67,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     else {
       final routeArgs = route.settings.arguments as Map<dynamic, dynamic>;
       data = routeArgs["data"];
+      process(data);
     }
     return Scaffold(
       backgroundColor: Colors.black,
@@ -115,6 +123,33 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                         child: Text(
                           data["task"],
                           style: TextStyle(fontFamily: "Poppins", color: Colors.white),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 0.0510 * c, top: 0.0510 * c),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                "Assigned by: ",
+                                style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 0.0408 * c,
+                                ),
+                              ),
+                            ),
+                            Container(
+                                child: Text(
+                              data["givenBy"],
+                              style: TextStyle(
+                                fontFamily: "Poppins",
+                                color: Colors.white,
+                                fontSize: 0.0408 * c,
+                              ),
+                            )),
+                          ],
                         ),
                       ),
                       user[0].type == "board" ? SizedBox(height: 0.0508 * c) : SizedBox(),
