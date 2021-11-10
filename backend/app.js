@@ -8,10 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(
-  {key},
-  { useNewUrlParser: true }
-);
+mongoose.connect({ key }, { useNewUrlParser: true });
 
 const userDataSchema = new mongoose.Schema({
   name: String,
@@ -626,6 +623,22 @@ app.get(
           res.send(foundData);
         }
       });
+  }
+);
+
+//////////////////////////////DELETING A FILE//////////////////////
+app.delete(
+  "/ff4085ad157354dc8ea67a848e7c2270b4a19282713cf3a7ecf8e0ffbb159ed1",
+  function (req, res) {
+    const Data = mongoose.model("files", fileUploadSchema);
+
+    Data.deleteOne({ _id: req.body.id }, function (err, foundData) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send("File deleted successfully!");
+      }
+    });
   }
 );
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:iste/board/tasks/edit_task_success_screen.dart';
 import 'package:iste/board/tasks/success_task_screen.dart';
 import 'package:intl/intl.dart';
 
@@ -105,7 +106,11 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     });
     print(response.body);
     print("data added!!!");
-    Navigator.of(context).pushNamed(SuccessTaskScreen.routeName);
+    if (edit == false) {
+      Navigator.of(context).pushNamed(SuccessTaskScreen.routeName);
+    } else {
+      Navigator.of(context).pushNamed(EditTaskSuccessScreen.routeName);
+    }
   }
 
   @override

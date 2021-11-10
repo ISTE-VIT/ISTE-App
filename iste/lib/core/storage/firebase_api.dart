@@ -11,4 +11,12 @@ class FirebaseApi {
       return null;
     }
   }
+
+  static UploadTask? deleteFile(String url) {
+    try {
+      final ref = FirebaseStorage.instance.refFromURL(url).delete();
+    } on FirebaseException catch (e) {
+      return null;
+    }
+  }
 }

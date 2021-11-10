@@ -11,12 +11,14 @@ import 'package:iste/board/requests/request_added_screen.dart';
 import 'package:iste/board/requests/request_added_successfully_screen.dart';
 import 'package:iste/board/requests/request_deleted_screen.dart';
 import 'package:iste/board/requests/view_requests_screen.dart';
+import 'package:iste/board/tasks/edit_task_success_screen.dart';
 import 'package:iste/board/tasks/new_task_screen.dart';
 import 'package:iste/board/tasks/success_task_screen.dart';
 import 'package:iste/core/core_broadcasts/core_broadcast_screen.dart';
 import 'package:iste/core/core_broadcasts/new_core_broadcast_screen.dart';
 import 'package:iste/core/core_broadcasts/success_core_broadcast_screen.dart';
 import 'package:iste/core/home_screen.dart';
+import 'package:iste/core/storage/file_deleted_screen.dart';
 import 'package:iste/core/storage/file_upload_successful.dart';
 import 'package:iste/core/storage/upload_new_file_screen.dart';
 import 'package:iste/core/tasks/task_deleted_screen.dart';
@@ -122,6 +124,7 @@ class MyApp extends StatelessWidget {
         NewTaskScreen.routeName: (ctx) => NewTaskScreen(),
         NewBroadcastScreen.routeName: (ctx) => NewBroadcastScreen(),
         SuccessTaskScreen.routeName: (ctx) => SuccessTaskScreen(),
+        EditTaskSuccessScreen.routeName: (ctx) => EditTaskSuccessScreen(),
         SuccessBroadcastScreen.routeName: (ctx) => SuccessBroadcastScreen(),
         TaskDeletedScreen.routeName: (ctx) => TaskDeletedScreen(),
         RequestDeletedScreen.routeName: (ctx) => RequestDeletedScreen(),
@@ -130,6 +133,7 @@ class MyApp extends StatelessWidget {
         UpdateApp.routeName: (ctx) => UpdateApp(),
         SuccessCoreBroadcastScreen.routeName: (ctx) => SuccessCoreBroadcastScreen(),
         FileUploadSuccessful.routeName: (ctx) => FileUploadSuccessful(),
+        FileDeletedScreen.routeName: (ctx) => FileDeletedScreen(),
       },
     );
   }
