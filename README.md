@@ -33,6 +33,17 @@ It hosts features such as  </ul>
   
  ### Installation
 
+    git clone https://github.com/ISTE-VIT
+
+**For app:** 
+
+    cd iste
+    flutter run
+
+**For backend server:**
+
+    cd backend
+    node app.js
 
  
  <hr>
