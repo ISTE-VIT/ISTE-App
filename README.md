@@ -1,11 +1,14 @@
 
 # ISTE-App
 
+<p align="center"><a href="https://istevit.in/" target="_blank">
+	<img src="https://ik.imagekit.io/pjbsfzv5ci/111881788-33353b80-89d8-11eb-9db1-746eba087b05_60cRdfJ_4C.png?updatedAt=1636800410212"> </a>
+</p>
 
+This app is made to be a medium of communication and management between the ISTE core and board. 
 
-This app is made to be a medium of communication and management between the ISTE CORE & Board. 
- <ul>
-It hosts features such as  </ul> 
+ 
+Features :
 
 -  Google account based profile sign in
 -  Board to core broadcasts 
@@ -15,18 +18,26 @@ It hosts features such as  </ul>
 -  Push Notifications 
  <hr>
  
- ### Operating Environment :- Android 
+ 
+<p align="center"><a href="https://istevit.in/" target="_blank">
+	<img src="https://ik.imagekit.io/m47q5r0txpn/Cover-6_YUNrdxS434B.png?updatedAt=1636948325095"> </a>
+</p>
+ 
+ <hr>
+ 
+ ### Operating Environment  
+   Android 
  <hr>
  
  ### Tech Stack 
 
  <ul>
- <li> a) Android studio </li>
- <li> b) Firebase </li>
- <li> c) Flutter </li>
- <li> d) Nodejs </li>
- <li> e) Express </li>
- <li> f) MongoDB </li>
+ <li>  Android studio </li>
+ <li>  Firebase </li>
+ <li>  Flutter </li>
+ <li>  Nodejs </li>
+ <li>  Express </li>
+ <li>  MongoDB </li>
 
  </ul>
   <hr>
@@ -50,23 +61,12 @@ It hosts features such as  </ul>
  
  ### Contributors
 
-
-- Adeel Abdul Sakkeer
-- Immanuel Varghese Koshy
-- Rishit Anand 
-- Sayam Sarkar
+- <a href="https://github.com/Sayam06">Sayam Sarkar</a>
+- <a href="https://github.com/ade3l">Adeel Abdul Sakkeer</a>
+- <a href="https://github.com/ivk1231">Immanuel Koshy</a>
+- <a href="https://github.com/RISHIT-ANAND">Rishit Anand</a>
 
  <hr>
 
-
-
-
-
-
-
-
-
-
-
-### Made with love ISTE VIT ;)
+<h4 align="center">Made with 💗 ISTE VIT ;)</h4>
 
