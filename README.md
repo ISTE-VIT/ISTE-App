@@ -68,5 +68,5 @@ Features :
 
  <hr>
 
-<h4 align="center">Made with 💗 ISTE VIT ;)</h4>
+<h4 align="center">Made with ❤️ by ISTE VIT ;)</h4>
 
