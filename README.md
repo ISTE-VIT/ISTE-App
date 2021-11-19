@@ -68,5 +68,7 @@ Features :
 
  <hr>
 
-<h4 align="center">Made with ❤️ by ISTE VIT ;)</h4>
+<p align="center">
+	Made with :heart: &nbsp;by <a href="https://istevit.in/" target="_blank">ISTE-VIT</a>
+</p>
 
