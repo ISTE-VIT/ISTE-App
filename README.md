@@ -44,11 +44,11 @@ Features :
   
  ### Installation
 
-    git clone https://github.com/ISTE-VIT
+    git clone https://github.com/ISTE-VIT/ISTE-App
 
 **For app:** 
 
-    cd iste
+    cd ISTE-App
     flutter run
 
 **For backend server:**
